@@ -123,12 +123,12 @@ foreach($line in Get-Content -path "C:\path\to\temp.txt" |findstr "http")
         $line=$line.substring(9)
 	$line >> "C:\path\to\urls3.txt"
     }
-    if($line -match 'url')
+    elseif($line -match 'url')
     {
         $line=$line.TrimStart("[url] - [code-200] -")
 	$line >> "C:\path\to\urls3.txt"
     }
-    if($line -match 'form')
+    elseif($line -match 'form')
     {
         $line=$line.TrimStart("[form] -")
 	$line >> "C:\path\to\urls3.txt"
