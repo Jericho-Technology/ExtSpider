@@ -141,7 +141,7 @@ type "C:\path\to\urls.txt" |findstr "testphp" |sort |get-unique  > "C:\path\to\u
 
 rm "C:\path\to\urls3.txt"
 
-foreach($line in Get-Content -path "C:\path\to\urls.txt" |findstr "testphp" |where{$_ -ne ""}) # edit this line for path
+foreach($line in Get-Content -path "C:\path\to\urls.txt" |findstr "testphp" |where{$_ -ne ""}) # edit this line for path and testphp
 {
 	curl.exe $line -x http://127.0.0.1:8080 -o NULL -s -A $agent
 	write-host "Sending HTTP GET Request for $line to Proxy"
