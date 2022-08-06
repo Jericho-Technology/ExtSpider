@@ -109,35 +109,33 @@ else
 	}
 
 
-New-Item "C:\path\to\urls3.txt";
+New-Item "C:\path\to\urls3.txt"; # edit the path
 
 
-# Create a conditional check if cookie and/or custom header is/are used in scan:
+cd "C:\path\to\gospider_v1.1.6_windows_x86_64\";.\gospider.exe --site $url -d $depth -t $threads -c $concurrent -v $agent > "C:\path\to\temp.txt"; # edit the path
 
-cd "C:\path\to\gospider_v1.1.6_windows_x86_64\";.\gospider.exe --site $url -d $depth -t $threads -c $concurrent -v $agent > "C:\path\to\temp.txt";
-
-foreach($line in Get-Content -path "C:\path\to\temp.txt" |findstr "http")
+foreach($line in Get-Content -path "C:\path\to\temp.txt" |findstr "http") # edit the path
 {
     if($line -match 'href')
     {
         $line=$line.substring(9)
-	$line >> "C:\path\to\urls3.txt"
+	$line >> "C:\path\to\urls3.txt" # edit the path
     }
     elseif($line -match 'url')
     {
         $line=$line.TrimStart("[url] - [code-200] -")
-	$line >> "C:\path\to\urls3.txt"
+	$line >> "C:\path\to\urls3.txt" # edit the path
     }
     elseif($line -match 'form')
     {
         $line=$line.TrimStart("[form] -")
-	$line >> "C:\path\to\urls3.txt"
+	$line >> "C:\path\to\urls3.txt" # edit the path
     }
 }
 
 rm "C:\path\to\temp.txt" # edit this
 
-type "C:\path\to\urls.txt" |findstr "testphp" |sort |get-unique  > "C:\path\to\urls.txt" # edit this line for path
+type "C:\path\to\urls.txt" |findstr "testphp" |sort |get-unique  > "C:\path\to\urls.txt" # edit this line for path and testphp
 
 rm "C:\path\to\urls3.txt"
 
